@@ -1,0 +1,11 @@
+1. one human move to checkmate
+    fen: 6k1/5ppp/p7/P7/5b2/7P/1r3PP1/3R2K1 w - - 0 1
+    move: d1d8
+
+2. one human move, then AI to checkmate
+    fen: 5k2/5ppp/p7/P7/5b2/7P/1r3PP1/3R2K1 b - - 0 1
+    move: f8g8
+
+3. one human move, then AI, then continue
+    fen: rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1
+    move: a2a4
