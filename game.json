@@ -1,13 +1,13 @@
 {
-    "current_game_fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
-    "restart_game_fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
-    "stats": {
-        "current_game": "stillon",
-        "previous_games": {
-            "humans": 0,
-            "stockfish": 0,
-            "draw": 0
-        }
-    },
-    "moves_history": []
+  "current_game_fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+  "restart_game_fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+  "stats": {
+    "current_game": "stillon",
+    "previous_games": {
+      "humans": 0,
+      "stockfish": 0,
+      "draw": 0
+    }
+  },
+  "moves_history": []
 }
