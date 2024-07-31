@@ -113,7 +113,7 @@ jobs:
 
       - name: Repo Update
         run: |
-          if [ "$CHANGE" == "true" ]; then
+          if [ "$CHANGE" == "false" ]; then
               exit 0 
           fi
 
