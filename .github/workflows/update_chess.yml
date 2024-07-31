@@ -1,0 +1,93 @@
+name: Update Chess
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  update_chess:
+    concurrency:
+      group: chess-update
+      cancel-in-progress: true
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      ISSUE: ${{ github.event.issue.html_url }}
+      TITLE: ${{ github.event.issue.title }}
+
+    if: startsWith(github.event.issue.title, 'chess_move_') || github.event.issue.tittle == "chess_restart"
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Chess Restart
+        if: github.event.issue.title == 'chess_restart'
+        run: echo "restart"
+
+      - name: Check Valid Move
+        if: github.event.issue.title != 'chess_restart'
+        id: move
+        run: |
+          pip install chess
+
+          move=${TITLE#chess_move_}
+          game_fen=$(cat game.json | jq -r '.current_game_fen')
+          is_valid=$(python3 logic/is_valid_move.py "$game_fen" "$move")
+
+          echo "uci=$move" >> "$GITHUB_OUTPUT"
+          echo "is_valid=$is_valid" >> "$GITHUB_OUTPUT"
+
+      - name: Make Human Move
+        if: steps.move.outputs.is_valid == 'yes'
+        id: human_move
+        run: |
+          game_fen=$(cat game.json | jq -r '.current_game_fen')
+          
+          game_fen=$(python3 logic/make_move.py "$game_fen" "${{ steps.move.outputs.uci }}")
+          game_status=$(python3 logic/check_game_status.py "$game_fen")
+
+          # update fen in chess/game.json
+          jq --arg a "$game_fen" --arg b "$game_status" '.current_game_fen = $a | .stats.current_game = $b' game.json > temp.json && mv temp.json game.json
+   
+          if [ "$game_status" -eq "stillon" ]; then
+              echo "gameover=yes" >> $GITHUB_OUTPUT
+          else
+              echo "gameover=no" >> $GITHUB_OUTPUT
+          fi 
+     
+      - name: Make Stockfish Move
+        id: stockfish_move
+        if: steps.human_move.outputs.gameover == 'no'
+        run: |
+          game_fen=$(cat game.json | jq -r '.current_game_fen')
+          
+          game_fen=$(python3 logic/compute_stockfish_move.py "$game_fen")
+          game_status=$(python3 logic/check_game_status.py "$game_fen")
+
+          # update fen in chess/game.json
+          jq --arg a "$game_fen" --arg b "$game_status" '.current_game_fen = $a | .stats.current_game = $b' game.json > temp.json && mv temp.json game.json
+   
+          if [ "$game_status" -eq "stillon" ]; then
+              echo "gameover=yes" >> $GITHUB_OUTPUT
+          else
+              echo "gameover=no" >> $GITHUB_OUTPUT
+          fi 
+
+      - name: Render (Game)
+        if: steps.stockfish_move.outputs.gameover == 'no'
+        run: cat game.json
+
+      - name: Render (Game Over)
+        if: steps.human_move.outputs.gameover == 'yes' || steps.stockfish_move.outputs.gameover == 'yes'
+        run: echo "hi"
+
+      - name: Not Valid UCI Move
+        if: steps.move.outputs.is_valid == 'no'
+        run: gh issue comment $ISSUE --body "Your move is not valid."
+
+      - name: Add Comment (if cancelled)
+        if: ${{ cancelled() }} 
+        run: gh issue comment $ISSUE --body "Someone else just made another move! try again please!"
+
+      - name: Close Issue
+        if: ${{ always() }}
+        run: gh issue close $ISSUE
