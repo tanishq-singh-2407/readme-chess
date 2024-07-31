@@ -114,12 +114,10 @@ jobs:
           git config --global user.email "hi@tanishqsingh.com"
           git add README.md game.json
 
-          clean=$(git commit -m "CI: Updated `data.json` and `README.md`")
-
-          if [ "$clean" == *"use \"git push\" to publish"* ]; then
-              git push origin main
-              gh issue comment $ISSUE --body "Repo Update, Thankyou for your interest."
-          fi
+          git commit -m 'CI: Updated `data.json` and `README.md`'
+          git push origin main
+              
+          gh issue comment $ISSUE --body "Repo Update, Thankyou for your interest."
 
       - name: Not Valid UCI Move
         if: steps.move.outputs.is_valid == 'no'
