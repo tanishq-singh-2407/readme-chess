@@ -21,8 +21,22 @@ jobs:
 
       - name: Chess Restart
         if: ${{ github.event.issue.title == 'chess_restart' }}
-        run: echo "restart"
+        run: |
+          game_fen=$(jq -r '.restart_game_fen' game.json)
+          stats=$(jq -r '.stats.previous_games' game.json -c)
+          jq --arg a "$game_fen" --arg b "stillon" '.current_game_fen = $a | .stats.current_game = $b | .moves_history = []' game.json > tmp.json && mv tmp.json game.json
+          
+          chess_board_markdown=$(python3 render/chess_board.py "$game_fen" "pieces/style-2")
+          moves_markdown=$(python3 render/moves.py "$game_fen")
+          stats_markdown=$(python3 render/stats.py "$stats")
 
+          echo "$chess_board_markdown" > README.md
+          echo "\n\n" >> README.md
+          echo "$moves_markdown" >> README.md
+          echo "\n\n" >> README.md
+          echo "stats_markdown" >> README.md
+          echo "\n" >> README.md
+ 
       - name: Check Valid Move
         if: github.event.issue.title != 'chess_restart'
         id: move
@@ -47,7 +61,7 @@ jobs:
 
           # update fen in chess/game.json
           jq --arg a "$game_fen" --arg b "$game_status" '.current_game_fen = $a | .stats.current_game = $b' game.json > temp.json && mv temp.json game.json
-   
+          
           if [ "$game_status" -eq "stillon" ]; then
               echo "gameover=yes" >> $GITHUB_OUTPUT
           else
