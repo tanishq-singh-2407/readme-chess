@@ -1,0 +1,18 @@
+on:
+  workflow_dispatch:
+
+jobs:
+  hlo:
+    runs-on: ubuntu-latest
+    env:
+      A: true
+      B: 4
+    steps:
+      - name: "1"
+        run: echo "$A" "$B"
+
+      - name: "2"
+        run: echo "A=false" >> $GITHUB_ENV
+
+      - name: "3"
+        run: echo "$A" "$B"
