@@ -22,6 +22,8 @@ jobs:
       - name: Chess Restart
         if: ${{ github.event.issue.title == 'chess_restart' }}
         run: |
+          pip install chess
+
           game_fen=$(jq -r '.restart_game_fen' game.json)
           stats=$(jq -r '.stats.previous_games' game.json -c)
           jq --arg a "$game_fen" --arg b "stillon" '.current_game_fen = $a | .stats.current_game = $b | .moves_history = []' game.json > tmp.json && mv tmp.json game.json
