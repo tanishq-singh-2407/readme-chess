@@ -80,9 +80,15 @@ jobs:
           jq --arg a "$game_fen" --arg b "$game_status" '.current_game_fen = $a | .stats.current_game = $b' game.json > temp.json && mv temp.json game.json
           
           if [ "$game_status" -eq "stillon" ]; then
-              echo "gameover=yes" >> $GITHUB_OUTPUT
-          else
               echo "gameover=no" >> $GITHUB_OUTPUT
+          else
+              if [ "$game_status" -eq "checkmate" ]; then
+                  jq -r '.stats.previous_games.humans += 1' game.json > tmp.json && mv tmp.json game.json
+              else
+                  jq -r '.stats.previous_games.draw += 1' game.json > tmp.json && mv tmp.json game.json
+              fi
+
+              echo "gameover=yes" >> $GITHUB_OUTPUT
           fi 
      
       - name: Make Stockfish Move
@@ -98,9 +104,15 @@ jobs:
           jq --arg a "$game_fen" --arg b "$game_status" '.current_game_fen = $a | .stats.current_game = $b' game.json > temp.json && mv temp.json game.json
    
           if [ "$game_status" -eq "stillon" ]; then
-              echo "gameover=yes" >> $GITHUB_OUTPUT
-          else
               echo "gameover=no" >> $GITHUB_OUTPUT
+          else
+              if [ "$game_status" -eq "checkmate" ]; then
+                  jq -r '.stats.previous_games.stockfish += 1' game.json > tmp.json && mv tmp.json game.json
+              else
+                  jq -r '.stats.previous_games.draw += 1' game.json > tmp.json && mv tmp.json game.json
+              fi
+
+              echo "gameover=yes" >> $GITHUB_OUTPUT
           fi 
 
       - name: Render (Game)
@@ -109,7 +121,7 @@ jobs:
 
       - name: Render (Game Over)
         if: steps.human_move.outputs.gameover == 'yes' || steps.stockfish_move.outputs.gameover == 'yes'
-        run: echo "hi"
+        run: cat game.json
 
       - name: Repo Update
         run: |
