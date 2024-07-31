@@ -41,7 +41,7 @@ jobs:
           echo "" >> README.md
 
 
-          echo "stats_markdown" >> README.md
+          echo "$stats_markdown" >> README.md
           echo "" >> README.md
           echo "" >> README.md
  
