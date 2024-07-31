@@ -22,6 +22,12 @@ jobs:
       - name: Chess Restart
         if: ${{ github.event.issue.title == 'chess_restart' }}
         run: |
+          game_status=$(jq -r '.stats.current_game' game.json)
+          if [ "$game_status" -eq "stillon" ]; then
+              gh issue comment $ISSUE --body "Game is still on."
+              exit 0
+          fi
+
           pip install chess
 
           game_fen=$(jq -r '.restart_game_fen' game.json)
