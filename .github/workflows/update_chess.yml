@@ -14,13 +14,13 @@ jobs:
       ISSUE: ${{ github.event.issue.html_url }}
       TITLE: ${{ github.event.issue.title }}
 
-    if: startsWith(github.event.issue.title, 'chess_move_') || ${{ github.event.issue.title == "chess_restart" }}
+    if: startsWith(github.event.issue.title, 'chess_move_') || ${{ github.event.issue.title == 'chess_restart' }}
 
     steps:
       - uses: actions/checkout@v3
 
       - name: Chess Restart
-        if: ${{ github.event.issue.title == "chess_restart" }}
+        if: ${{ github.event.issue.title == 'chess_restart' }}
         run: echo "restart"
 
       - name: Check Valid Move
