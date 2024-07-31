@@ -115,9 +115,13 @@ jobs:
           git add README.md game.json
 
           git commit -m 'CI: Updated `data.json` and `README.md`'
-          git push origin main
-              
-          gh issue comment $ISSUE --body "Repo Update, Thankyou for your interest."
+          reply=$(git push origin main)
+          
+          if [ "$reply" == *"github.com:tanishq-singh-2407/readme-chess.git"* ]; then 
+              gh issue comment $ISSUE --body "Repo Update, Thankyou for your interest."
+          elif
+              gh issue comment $ISSUE --body "$reply"
+          fi
 
       - name: Not Valid UCI Move
         if: steps.move.outputs.is_valid == 'no'
