@@ -9,7 +9,6 @@
 | 2 | ![piece](./pieces/style-2/pawn-w.jpg) | ![piece](./pieces/style-2/pawn-w.jpg) | ![piece](./pieces/style-2/pawn-w.jpg) | ![piece](./pieces/style-2/pawn-w.jpg) | ![piece](./pieces/style-2/pawn-w.jpg) | ![piece](./pieces/style-2/pawn-w.jpg) | ![piece](./pieces/style-2/pawn-w.jpg) | ![piece](./pieces/style-2/pawn-w.jpg) |
 | 1 | ![piece](./pieces/style-2/rook-w.jpg) | ![piece](./pieces/style-2/knight-w.jpg) | ![piece](./pieces/style-2/bishop-w.jpg) | ![piece](./pieces/style-2/queen-w.jpg) | ![piece](./pieces/style-2/king-w.jpg) | ![piece](./pieces/style-2/bishop-w.jpg) | ![piece](./pieces/style-2/knight-w.jpg) | ![piece](./pieces/style-2/rook-w.jpg) |
 
-
 | From |  To  |
 |------|------|
 |  g1  | [h3](https://github.com/tanishq-singh-2407/tanishq-singh-2407/issues/new?title=chess_move_g1h3&labels=make+move&body=Just+push+%27Submit+new+issue%27.+You+don%27t+need+to+do+anything+else.), [f3](https://github.com/tanishq-singh-2407/tanishq-singh-2407/issues/new?title=chess_move_g1f3&labels=make+move&body=Just+push+%27Submit+new+issue%27.+You+don%27t+need+to+do+anything+else.) |
