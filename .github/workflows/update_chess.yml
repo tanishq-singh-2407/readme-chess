@@ -117,7 +117,7 @@ jobs:
 
           clean=$(git commit -m "CI: Updated `data.json` and `README.md`")
 
-          if [[ ${clean} != *"nothing to commit"* ]]; then
+          if [ "$clean" != *"nothing to commit"* ]; then
               git push
           fi
 
