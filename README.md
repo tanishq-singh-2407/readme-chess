@@ -2,10 +2,10 @@
 |---|---|---|---|---|---|---|---|---|
 | 8 | ![piece](./pieces/style-2/rook-b.jpg) | ![piece](./pieces/style-2/knight-b.jpg) | ![piece](./pieces/style-2/bishop-b.jpg) | ![piece](./pieces/style-2/queen-b.jpg) | ![piece](./pieces/style-2/king-b.jpg) | ![piece](./pieces/style-2/bishop-b.jpg) | ![piece](./pieces/style-2/knight-b.jpg) | ![piece](./pieces/style-2/rook-b.jpg) |
 | 7 | ![piece](./pieces/style-2/pawn-b.jpg) | ![piece](./pieces/style-2/pawn-b.jpg) | ![piece](./pieces/style-2/pawn-b.jpg) | ![piece](./pieces/style-2/pawn-b.jpg) | ![piece](./pieces/style-2/pawn-b.jpg) | ![piece](./pieces/style-2/pawn-b.jpg) | ![piece](./pieces/style-2/pawn-b.jpg) | ![piece](./pieces/style-2/pawn-b.jpg) |
-| 6 | ![piece](./pieces/style-2/bg-1.jpg) | ![piece](./pieces/style-2/bg-3.jpg) | ![piece](./pieces/style-2/bg-5.jpg) | ![piece](./pieces/style-2/bg-2.jpg) | ![piece](./pieces/style-2/bg-3.jpg) | ![piece](./pieces/style-2/bg-3.jpg) | ![piece](./pieces/style-2/bg-3.jpg) | ![piece](./pieces/style-2/bg-3.jpg) |
-| 5 | ![piece](./pieces/style-2/bg-3.jpg) | ![piece](./pieces/style-2/bg-1.jpg) | ![piece](./pieces/style-2/bg-1.jpg) | ![piece](./pieces/style-2/bg-4.jpg) | ![piece](./pieces/style-2/bg-2.jpg) | ![piece](./pieces/style-2/bg-4.jpg) | ![piece](./pieces/style-2/bg-5.jpg) | ![piece](./pieces/style-2/bg-3.jpg) |
-| 4 | ![piece](./pieces/style-2/bg-4.jpg) | ![piece](./pieces/style-2/bg-1.jpg) | ![piece](./pieces/style-2/bg-5.jpg) | ![piece](./pieces/style-2/bg-2.jpg) | ![piece](./pieces/style-2/bg-5.jpg) | ![piece](./pieces/style-2/bg-2.jpg) | ![piece](./pieces/style-2/bg-4.jpg) | ![piece](./pieces/style-2/bg-4.jpg) |
-| 3 | ![piece](./pieces/style-2/bg-3.jpg) | ![piece](./pieces/style-2/bg-3.jpg) | ![piece](./pieces/style-2/bg-2.jpg) | ![piece](./pieces/style-2/bg-4.jpg) | ![piece](./pieces/style-2/bg-4.jpg) | ![piece](./pieces/style-2/bg-5.jpg) | ![piece](./pieces/style-2/bg-3.jpg) | ![piece](./pieces/style-2/bg-5.jpg) |
+| 6 | ![piece](./pieces/style-2/bg-3.jpg) | ![piece](./pieces/style-2/bg-2.jpg) | ![piece](./pieces/style-2/bg-1.jpg) | ![piece](./pieces/style-2/bg-3.jpg) | ![piece](./pieces/style-2/bg-2.jpg) | ![piece](./pieces/style-2/bg-1.jpg) | ![piece](./pieces/style-2/bg-4.jpg) | ![piece](./pieces/style-2/bg-4.jpg) |
+| 5 | ![piece](./pieces/style-2/bg-3.jpg) | ![piece](./pieces/style-2/bg-5.jpg) | ![piece](./pieces/style-2/bg-4.jpg) | ![piece](./pieces/style-2/bg-1.jpg) | ![piece](./pieces/style-2/bg-2.jpg) | ![piece](./pieces/style-2/bg-4.jpg) | ![piece](./pieces/style-2/bg-1.jpg) | ![piece](./pieces/style-2/bg-2.jpg) |
+| 4 | ![piece](./pieces/style-2/bg-4.jpg) | ![piece](./pieces/style-2/bg-3.jpg) | ![piece](./pieces/style-2/bg-2.jpg) | ![piece](./pieces/style-2/bg-3.jpg) | ![piece](./pieces/style-2/bg-1.jpg) | ![piece](./pieces/style-2/bg-4.jpg) | ![piece](./pieces/style-2/bg-4.jpg) | ![piece](./pieces/style-2/bg-4.jpg) |
+| 3 | ![piece](./pieces/style-2/bg-4.jpg) | ![piece](./pieces/style-2/bg-3.jpg) | ![piece](./pieces/style-2/bg-4.jpg) | ![piece](./pieces/style-2/bg-2.jpg) | ![piece](./pieces/style-2/bg-5.jpg) | ![piece](./pieces/style-2/bg-3.jpg) | ![piece](./pieces/style-2/bg-2.jpg) | ![piece](./pieces/style-2/bg-5.jpg) |
 | 2 | ![piece](./pieces/style-2/pawn-w.jpg) | ![piece](./pieces/style-2/pawn-w.jpg) | ![piece](./pieces/style-2/pawn-w.jpg) | ![piece](./pieces/style-2/pawn-w.jpg) | ![piece](./pieces/style-2/pawn-w.jpg) | ![piece](./pieces/style-2/pawn-w.jpg) | ![piece](./pieces/style-2/pawn-w.jpg) | ![piece](./pieces/style-2/pawn-w.jpg) |
 | 1 | ![piece](./pieces/style-2/rook-w.jpg) | ![piece](./pieces/style-2/knight-w.jpg) | ![piece](./pieces/style-2/bishop-w.jpg) | ![piece](./pieces/style-2/queen-w.jpg) | ![piece](./pieces/style-2/king-w.jpg) | ![piece](./pieces/style-2/bishop-w.jpg) | ![piece](./pieces/style-2/knight-w.jpg) | ![piece](./pieces/style-2/rook-w.jpg) |
 
@@ -24,6 +24,10 @@
 |  a2  | [a3](https://github.com/tanishq-singh-2407/tanishq-singh-2407/issues/new?title=chess_move_a2a3&labels=make+move&body=Just+push+%27Submit+new+issue%27.+You+don%27t+need+to+do+anything+else.), [a4](https://github.com/tanishq-singh-2407/tanishq-singh-2407/issues/new?title=chess_move_a2a4&labels=make+move&body=Just+push+%27Submit+new+issue%27.+You+don%27t+need+to+do+anything+else.) |
 
 
-stats_markdown
+| game | count |
+|------|-------|
+| humans | 0 |
+| stockfish | 0 |
+| draw | 0 |
 
 
