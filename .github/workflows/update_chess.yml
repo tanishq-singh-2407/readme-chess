@@ -23,7 +23,7 @@ jobs:
         if: ${{ github.event.issue.title == 'chess_restart' }}
         run: |
           game_status=$(jq -r '.stats.current_game' game.json)
-          if [ "$game_status" -eq "stillon" ]; then
+          if [ "$game_status" == "stillon" ]; then
               gh issue comment $ISSUE --body "Game is still on."
               exit 0
           fi
