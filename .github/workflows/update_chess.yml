@@ -33,11 +33,17 @@ jobs:
           stats_markdown=$(python3 render/stats.py "$stats")
 
           echo "$chess_board_markdown" > README.md
-          echo "\n\n" >> README.md
+          echo "" >> README.md
+          echo "" >> README.md
+          
           echo "$moves_markdown" >> README.md
-          echo "\n\n" >> README.md
+          echo "" >> README.md
+          echo "" >> README.md
+
+
           echo "stats_markdown" >> README.md
-          echo "\n" >> README.md
+          echo "" >> README.md
+          echo "" >> README.md
  
       - name: Check Valid Move
         if: github.event.issue.title != 'chess_restart'
