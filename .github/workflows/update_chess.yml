@@ -117,11 +117,10 @@ jobs:
 
           clean=$(git commit -m "CI: Updated `data.json` and `README.md`")
 
-          if [ "$clean" != *"nothing to commit"* ]; then
+          if [ "$clean" == *"use \"git push\" to publish"* ]; then
               git push
+              gh issue comment $ISSUE --body "Repo Update, Thankyou for your interest."
           fi
-
-          gh issue comment $ISSUE --body "Repo Update, Thankyou for your interest."
 
       - name: Not Valid UCI Move
         if: steps.move.outputs.is_valid == 'no'
