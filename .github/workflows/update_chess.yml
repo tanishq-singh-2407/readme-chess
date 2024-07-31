@@ -96,6 +96,21 @@ jobs:
         if: steps.human_move.outputs.gameover == 'yes' || steps.stockfish_move.outputs.gameover == 'yes'
         run: echo "hi"
 
+      - name: Repo Update
+        run: |
+          git config --global user.name "Tanishq Singh"
+          git config --global user.email "hi@tanishqsingh.com"
+          git add README.md
+          git add game.json
+
+          clean=$(git commit -m "CI: Updated `data.json` and `README.md`")
+
+          if [[ ${clean} != *"nothing to commit"* ]]; then
+              git push
+          fi
+
+          gh issue comment $ISSUE --body "Repo Update, Thankyou for your interest."
+
       - name: Not Valid UCI Move
         if: steps.move.outputs.is_valid == 'no'
         run: gh issue comment $ISSUE --body "Your move is not valid."
