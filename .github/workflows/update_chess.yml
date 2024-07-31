@@ -14,7 +14,7 @@ jobs:
       ISSUE: ${{ github.event.issue.html_url }}
       TITLE: ${{ github.event.issue.title }}
 
-    if: startsWith(github.event.issue.title, 'chess_move_') || github.event.issue.tittle == "chess_restart"
+    if: startsWith(github.event.issue.title, 'chess_move_') || github.event.issue.title == "chess_restart"
 
     steps:
       - uses: actions/checkout@v3
