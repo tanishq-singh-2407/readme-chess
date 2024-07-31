@@ -13,6 +13,7 @@ jobs:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       ISSUE: ${{ github.event.issue.html_url }}
       TITLE: ${{ github.event.issue.title }}
+      CHANGE: false
 
     if: startsWith(github.event.issue.title, 'chess_move_') || ${{ github.event.issue.title == 'chess_restart' }}
 
@@ -23,11 +24,13 @@ jobs:
         if: ${{ github.event.issue.title == 'chess_restart' }}
         run: |
           game_status=$(jq -r '.stats.current_game' game.json)
+          
           if [ "$game_status" == "stillon" ]; then
               gh issue comment $ISSUE --body "Game is still on."
               exit 0
           fi
 
+          echo "$CHANGE=true" >> $GITHUB_ENV
           pip install chess
 
           game_fen=$(jq -r '.restart_game_fen' game.json)
@@ -110,6 +113,10 @@ jobs:
 
       - name: Repo Update
         run: |
+          if [ "$CHANGE" == "true" ]; then
+              exit 0 
+          fi
+
           git config --global user.name "Tanishq Singh"
           git config --global user.email "hi@tanishqsingh.com"
           git add README.md game.json
