@@ -79,10 +79,10 @@ jobs:
           # update fen in chess/game.json
           jq --arg a "$game_fen" --arg b "$game_status" '.current_game_fen = $a | .stats.current_game = $b' game.json > temp.json && mv temp.json game.json
           
-          if [ "$game_status" -eq "stillon" ]; then
+          if [ "$game_status" == "stillon" ]; then
               echo "gameover=no" >> $GITHUB_OUTPUT
           else
-              if [ "$game_status" -eq "checkmate" ]; then
+              if [ "$game_status" == "checkmate" ]; then
                   jq -r '.stats.previous_games.humans += 1' game.json > tmp.json && mv tmp.json game.json
               else
                   jq -r '.stats.previous_games.draw += 1' game.json > tmp.json && mv tmp.json game.json
@@ -103,10 +103,10 @@ jobs:
           # update fen in chess/game.json
           jq --arg a "$game_fen" --arg b "$game_status" '.current_game_fen = $a | .stats.current_game = $b' game.json > temp.json && mv temp.json game.json
    
-          if [ "$game_status" -eq "stillon" ]; then
+          if [ "$game_status" == "stillon" ]; then
               echo "gameover=no" >> $GITHUB_OUTPUT
           else
-              if [ "$game_status" -eq "checkmate" ]; then
+              if [ "$game_status" == "checkmate" ]; then
                   jq -r '.stats.previous_games.stockfish += 1' game.json > tmp.json && mv tmp.json game.json
               else
                   jq -r '.stats.previous_games.draw += 1' game.json > tmp.json && mv tmp.json game.json
