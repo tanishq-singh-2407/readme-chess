@@ -30,7 +30,7 @@ jobs:
               exit 0
           fi
 
-          echo "$CHANGE=true" >> $GITHUB_ENV
+          echo "CHANGE=true" >> $GITHUB_ENV
           pip install chess
 
           game_fen=$(jq -r '.restart_game_fen' game.json)
@@ -147,7 +147,7 @@ jobs:
           echo "" >> README.md
           echo "" >> README.md
 
-          echo "$CHANGE=true" >> $GITHUB_ENV
+          echo "CHANGE=true" >> $GITHUB_ENV
 
       - name: Render (Game Over)
         if: steps.human_move.outputs.gameover == 'yes' || steps.stockfish_move.outputs.gameover == 'yes'
