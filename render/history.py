@@ -19,7 +19,7 @@ def list_to_markdown(history_list):
         stockfish_from = move['stockfish']['from']
         stockfish_to = move['stockfish']['to']
 
-        markdown.append(f'|{i + 1}|`{datetime_obj.strftime("%d/%m/%y")}` `{datetime_obj.strftime("%H:%M:%S")}`|<img src="https://github.com/{username}.png" height="50px" /> | [`{username}`](https://github.com/{username})|`{username_from}`|`{username_to}`|`{stockfish_from}`|`{stockfish_to}`|')
+        markdown.append(f'|{i + 1}|`{datetime_obj.strftime("%d/%m/%y")}`, `{datetime_obj.strftime("%H:%M:%S")}`|<img src="https://github.com/{username}.png" height="50px" /> | [`{username}`](https://github.com/{username})|`{username_from}`|`{username_to}`|`{stockfish_from}`|`{stockfish_to}`|')
 
     return markdown
 

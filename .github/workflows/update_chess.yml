@@ -80,7 +80,7 @@ jobs:
           game_status=$(python3 logic/check_game_status.py "$game_fen")
 
           jq --arg a "$game_fen" --arg b "$game_status" '.current_game_fen = $a | .stats.current_game = $b' game.json > temp.json && mv temp.json game.json
-          jq --arg a "$username" --arg b "${move:0:2}" --arg c "${move:2}" --arg d "$datetime"  -r '.moves_history |= [{"datetime": $d, "human": {"username": $a, "from": $b, "to": $c}}] + .[0:-1]' game.json > temp.json && mv temp.json game.json
+          jq --arg a "$username" --arg b "${move:0:2}" --arg c "${move:2}" --arg d "$datetime"  -r '.moves_history |= if length >= 5 then [{"datetime": $d, "human": {"username": $a, "from": $b, "to": $c}}] + .[0:-1] else [{"datetime": $d, "human": {"username": $a, "from": $b, "to": $c}}] + .[0:] end' game.json > temp.json && mv temp.json game.json
  
           if [ "$game_status" == "stillon" ]; then
               echo "gameover=no" >> $GITHUB_OUTPUT

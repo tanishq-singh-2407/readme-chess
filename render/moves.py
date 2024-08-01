@@ -27,7 +27,7 @@ def list_to_markdown(move_list):
         
         for i in range(0, len(move_list[from_move])):
             to_move = move_list[from_move][i]
-            line += f"[{to_move}](https://github.com/tanishq-singh-2407/tanishq-singh-2407/issues/new?title=chess_move_{from_move}{to_move}&labels=make+move&body=Just+push+%27Submit+new+issue%27.+You+don%27t+need+to+do+anything+else.), "
+            line += f"[{to_move}](https://github.com/tanishq-singh-2407/readme-chess/issues/new?title=chess_move_{from_move}{to_move}&labels=make+move&body=Just+push+%27Submit+new+issue%27.+You+don%27t+need+to+do+anything+else.), "
 
         line = line[:-2] + " |"
         markdown_lines.append(line)
