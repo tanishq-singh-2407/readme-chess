@@ -74,12 +74,13 @@ jobs:
           game_fen=$(cat game.json | jq -r '.current_game_fen')
           move="${{ steps.move.outputs.uci }}"
           username="${{ github.event.issue.user.login }}"
- 
+          datetime=$(date -u +"%Y-%m-%d %H:%M:%S") 
+
           game_fen=$(python3 logic/make_move.py "$game_fen" "$move")
           game_status=$(python3 logic/check_game_status.py "$game_fen")
 
           jq --arg a "$game_fen" --arg b "$game_status" '.current_game_fen = $a | .stats.current_game = $b' game.json > temp.json && mv temp.json game.json
-          jq --arg a "$username" --arg b "${move:0:2}" --arg c "${move:2}" -r '.moves_history |= [{"human": {"username": $a, "from": $b, "to": $c}}] + .[0:-1]' game.json > temp.json && mv temp.json game.json
+          jq --arg a "$username" --arg b "${move:0:2}" --arg c "${move:2}" --arg d "$datetime"  -r '.moves_history |= [{"datetime": $d, "human": {"username": $a, "from": $b, "to": $c}}] + .[0:-1]' game.json > temp.json && mv temp.json game.json
  
           if [ "$game_status" == "stillon" ]; then
               echo "gameover=no" >> $GITHUB_OUTPUT
@@ -120,7 +121,33 @@ jobs:
 
       - name: Render (Game)
         if: steps.stockfish_move.outputs.gameover == 'no'
-        run: cat game.json
+        run: |
+          game_fen=$(jq -r '.current_game_fen' game.json)
+          moves_history=$(jq -r '.moves_history' game.json -c)
+          stats=$(jq -r '.stats.previous_games' game.json -c)
+
+          chess_board_markdown=$(python3 render/chess_board.py "$game_fen" "pieces/style-2")
+          moves_markdown=$(python3 render/moves.py "$game_fen")
+          moves_history_markdown=$(python3 render/history.py "$moves_history")
+          stats_markdown=$(python3 render/stats.py "$stats")
+
+          echo "$chess_board_markdown" > README.md
+          echo "" >> README.md
+          echo "" >> README.md
+          
+          echo "$moves_markdown" >> README.md
+          echo "" >> README.md
+          echo "" >> README.md
+
+          echo "$moves_history_markdown" >> README.md
+          echo "" >> README.md
+          echo "" >> README.md
+
+          echo "$stats_markdown" >> README.md
+          echo "" >> README.md
+          echo "" >> README.md
+
+          echo "$CHANGE=true" >> $GITHUB_ENV
 
       - name: Render (Game Over)
         if: steps.human_move.outputs.gameover == 'yes' || steps.stockfish_move.outputs.gameover == 'yes'
