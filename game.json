@@ -1,5 +1,5 @@
 {
-  "current_game_fen": "rnb1kbn1/ppp2pp1/8/3pP1q1/P7/7r/1PPPP2P/RNBQ1RK1 w q - 2 8",
+  "current_game_fen": "rnb1kbn1/ppp2pp1/8/3pP1q1/P7/8/1PPPPK1r/RNBQ1R2 w q - 0 9",
   "restart_game_fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
   "stats": {
     "current_game": "stillon",
@@ -10,6 +10,18 @@
     }
   },
   "moves_history": [
+    {
+      "datetime": "2024-08-01 03:50:00",
+      "human": {
+        "username": "tanishq-singh-2407",
+        "from": "g1",
+        "to": "f2"
+      },
+      "stockfish": {
+        "from": "h3",
+        "to": "h2"
+      }
+    },
     {
       "datetime": "2024-08-01 03:49:05",
       "human": {
@@ -56,18 +68,6 @@
       "stockfish": {
         "from": "g4",
         "to": "h3"
-      }
-    },
-    {
-      "datetime": "2024-08-01 03:20:27",
-      "human": {
-        "username": "tanishq-singh-2301",
-        "from": "a2",
-        "to": "a4"
-      },
-      "stockfish": {
-        "from": "h5",
-        "to": "g4"
       }
     }
   ]
