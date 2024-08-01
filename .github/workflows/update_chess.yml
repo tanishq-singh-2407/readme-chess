@@ -14,6 +14,7 @@ jobs:
       ISSUE: ${{ github.event.issue.html_url }}
       TITLE: ${{ github.event.issue.title }}
       CHANGE: false
+      GAME_STATUS: "stillon"
 
     if: startsWith(github.event.issue.title, 'chess_move_') || ${{ github.event.issue.title == 'chess_restart' }}
 
@@ -41,18 +42,9 @@ jobs:
           moves_markdown=$(python3 render/moves.py "$game_fen")
           stats_markdown=$(python3 render/stats.py "$stats")
 
-          echo "$chess_board_markdown" > README.md
-          echo "" >> README.md
-          echo "" >> README.md
-          
-          echo "$moves_markdown" >> README.md
-          echo "" >> README.md
-          echo "" >> README.md
-
-
-          echo "$stats_markdown" >> README.md
-          echo "" >> README.md
-          echo "" >> README.md
+          echo "$chess_board_markdown" > README.md && echo "" >> README.md && echo "" >> README.md
+          echo "$moves_markdown" >> README.md && echo "" >> README.md && echo "" >> README.md
+          echo "$stats_markdown" >> README.md && echo "" >> README.md && echo "" >> README.md
  
       - name: Check Valid Move
         if: github.event.issue.title != 'chess_restart'
@@ -87,8 +79,10 @@ jobs:
           else
               if [ "$game_status" == "checkmate" ]; then
                   jq -r '.stats.previous_games.humans += 1' game.json > tmp.json && mv tmp.json game.json
+                  echo "GAME_STATUS=humans" >> $GITHUB_ENV
               else
                   jq -r '.stats.previous_games.draw += 1' game.json > tmp.json && mv tmp.json game.json
+                  echo "GAME_STATUS=draw" >> $GITHUB_ENV
               fi
 
               echo "gameover=yes" >> $GITHUB_OUTPUT
@@ -112,8 +106,10 @@ jobs:
           else
               if [ "$game_status" == "checkmate" ]; then
                   jq -r '.stats.previous_games.stockfish += 1' game.json > tmp.json && mv tmp.json game.json
+                  echo "GAME_STATUS=stockfish" >> $GITHUB_ENV
               else
                   jq -r '.stats.previous_games.draw += 1' game.json > tmp.json && mv tmp.json game.json
+                  echo "GAME_STATUS=draw" >> $GITHUB_ENV
               fi
 
               echo "gameover=yes" >> $GITHUB_OUTPUT
@@ -131,27 +127,31 @@ jobs:
           moves_history_markdown=$(python3 render/history.py "$moves_history")
           stats_markdown=$(python3 render/stats.py "$stats")
 
-          echo "$chess_board_markdown" > README.md
-          echo "" >> README.md
-          echo "" >> README.md
-          
-          echo "$moves_markdown" >> README.md
-          echo "" >> README.md
-          echo "" >> README.md
-
-          echo "$moves_history_markdown" >> README.md
-          echo "" >> README.md
-          echo "" >> README.md
-
-          echo "$stats_markdown" >> README.md
-          echo "" >> README.md
-          echo "" >> README.md
+          echo "$chess_board_markdown" > README.md && echo "" >> README.md && echo "" >> README.md
+          echo "$moves_markdown" >> README.md && echo "" >> README.md && echo "" >> README.md
+          echo "$moves_history_markdown" >> README.md && echo "" >> README.md && echo "" >> README.md
+          echo "$stats_markdown" >> README.md && echo "" >> README.md && echo "" >> README.md
 
           echo "CHANGE=true" >> $GITHUB_ENV
 
       - name: Render (Game Over)
         if: steps.human_move.outputs.gameover == 'yes' || steps.stockfish_move.outputs.gameover == 'yes'
-        run: cat game.json
+        run: |
+          game_fen=$(jq -r '.current_game_fen' game.json)
+          moves_history=$(jq -r '.moves_history' game.json -c)
+          stats=$(jq -r '.stats.previous_games' game.json -c)
+
+          chess_board_markdown=$(python3 render/chess_board.py "$game_fen" "pieces/style-2")
+          gif_restart_markdown=$(python3 render/restart.py "$GAME_STATUS")
+          moves_history_markdown=$(python3 render/history.py "$moves_history")
+          stats_markdown=$(python3 render/stats.py "$stats")
+
+          echo "$chess_board_markdown" > README.md && echo "" >> README.md && echo "" >> README.md
+          echo "$gif_restart_markdown" >> README.md && echo "" >> README.md && echo "" >> README.md
+          echo "$moves_history_markdown" >> README.md && echo "" >> README.md && echo "" >> README.md
+          echo "$stats_markdown" >> README.md && echo "" >> README.md && echo "" >> README.md
+        
+          echo "CHANGE=true" >> $GITHUB_ENV
 
       - name: Repo Update
         run: |

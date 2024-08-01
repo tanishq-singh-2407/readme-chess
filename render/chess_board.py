@@ -41,7 +41,8 @@ def fen_to_markdown(fen, pieces_folder):
 
         line += "|"
         markdown_lines.append(line)
-
+    
+    markdown_lines.append("|   | a | b | c | d | e | f | g | h |")
     return "\n".join(markdown_lines)
 
 print(fen_to_markdown(game_fen, pieces_folder))
