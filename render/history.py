@@ -2,7 +2,6 @@ import sys
 from datetime import datetime, timezone
 import json
 
-# current_utc_time = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S")
 history_list = json.loads(sys.argv[1])
 
 def list_to_markdown(history_list):

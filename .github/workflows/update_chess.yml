@@ -72,13 +72,15 @@ jobs:
         id: human_move
         run: |
           game_fen=$(cat game.json | jq -r '.current_game_fen')
-          
-          game_fen=$(python3 logic/make_move.py "$game_fen" "${{ steps.move.outputs.uci }}")
+          move = "${{ steps.move.outputs.uci }}"
+ 
+          game_fen=$(python3 logic/make_move.py "$game_fen" "$move")
           game_status=$(python3 logic/check_game_status.py "$game_fen")
 
           # update fen in chess/game.json
           jq --arg a "$game_fen" --arg b "$game_status" '.current_game_fen = $a | .stats.current_game = $b' game.json > temp.json && mv temp.json game.json
-          
+          jq --arg a "${{ github.event.issue.user.login }}" --arg b "${move:0:2}" --arg c "${move:2}" -r '.moves_history |= [{"human": {"username: $a, "from": $b, "to": $c}}] + .[0:-1]' game.json > temp.json && mv temp.json game.json
+ 
           if [ "$game_status" == "stillon" ]; then
               echo "gameover=no" >> $GITHUB_OUTPUT
           else
@@ -97,12 +99,14 @@ jobs:
         run: |
           game_fen=$(cat game.json | jq -r '.current_game_fen')
           
-          game_fen=$(python3 logic/compute_stockfish_move.py "$game_fen")
+          move=$(python3 logic/compute_stockfish_move.py "$game_fen")
+          game_fen=$(python3 logic/make_move.py "$game_fen" "$move")
           game_status=$(python3 logic/check_game_status.py "$game_fen")
 
           # update fen in chess/game.json
           jq --arg a "$game_fen" --arg b "$game_status" '.current_game_fen = $a | .stats.current_game = $b' game.json > temp.json && mv temp.json game.json
-   
+          jq --arg b "${move:0:2}" --arg c "${move:2}" -r '.moves_history[0] |= . +{"stockfish": {"from": $b, "to": $c}}' game.json > temp.json && mv temp.json game.json
+
           if [ "$game_status" == "stillon" ]; then
               echo "gameover=no" >> $GITHUB_OUTPUT
           else

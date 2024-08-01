@@ -11,7 +11,6 @@ board = chess.Board(game_fen)
 engine = chess.engine.SimpleEngine.popen_uci(STOCKFISH_PATH)
 result = engine.play(board, chess.engine.Limit(time=.5))
 
-board.push(result.move)
 engine.quit()
 
-print(board.fen())
+print(result.move)
