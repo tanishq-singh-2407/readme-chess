@@ -72,7 +72,7 @@ jobs:
         id: human_move
         run: |
           game_fen=$(cat game.json | jq -r '.current_game_fen')
-          move = "${{ steps.move.outputs.uci }}"
+          move="${{ steps.move.outputs.uci }}"
  
           game_fen=$(python3 logic/make_move.py "$game_fen" "$move")
           game_status=$(python3 logic/check_game_status.py "$game_fen")
