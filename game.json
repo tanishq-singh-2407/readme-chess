@@ -1,74 +1,13 @@
 {
-  "current_game_fen": "rnb1kbn1/ppp2pp1/8/3pP3/P3q3/4K3/1PPPP2r/RNBQ1R2 w q - 4 11",
+  "current_game_fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
   "restart_game_fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
   "stats": {
-    "current_game": "checkmate",
+    "current_game": "stillon",
     "previous_games": {
       "humans": 0,
       "stockfish": 1,
       "draw": 0
     }
   },
-  "moves_history": [
-    {
-      "datetime": "2024-08-01 03:51:40",
-      "human": {
-        "username": "tanishq-singh-2407",
-        "from": "f3",
-        "to": "e3"
-      },
-      "stockfish": {
-        "from": "g4",
-        "to": "e4"
-      }
-    },
-    {
-      "datetime": "2024-08-01 03:50:53",
-      "human": {
-        "username": "tanishq-singh-2407",
-        "from": "f2",
-        "to": "f3"
-      },
-      "stockfish": {
-        "from": "g5",
-        "to": "g4"
-      }
-    },
-    {
-      "datetime": "2024-08-01 03:50:00",
-      "human": {
-        "username": "tanishq-singh-2407",
-        "from": "g1",
-        "to": "f2"
-      },
-      "stockfish": {
-        "from": "h3",
-        "to": "h2"
-      }
-    },
-    {
-      "datetime": "2024-08-01 03:49:05",
-      "human": {
-        "username": "tanishq-singh-2407",
-        "from": "e1",
-        "to": "g1"
-      },
-      "stockfish": {
-        "from": "d8",
-        "to": "g5"
-      }
-    },
-    {
-      "datetime": "2024-08-01 03:33:41",
-      "human": {
-        "username": "tanishq-singh-2407",
-        "from": "f4",
-        "to": "e5"
-      },
-      "stockfish": {
-        "from": "h8",
-        "to": "h3"
-      }
-    }
-  ]
+  "moves_history": []
 }
