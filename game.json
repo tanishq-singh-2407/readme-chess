@@ -1,15 +1,27 @@
 {
-  "current_game_fen": "r3k1nr/ppp2pbp/2n5/3pp3/8/5P2/PPPPq1KP/RNB5 w kq - 0 11",
+  "current_game_fen": "r3k1nr/ppp2pbp/2n5/3pp3/8/5P2/PPPP3P/RNB2q1K w kq - 2 12",
   "restart_game_fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
   "stats": {
-    "current_game": "stillon",
+    "current_game": "checkmate",
     "previous_games": {
       "humans": 0,
-      "stockfish": 1,
+      "stockfish": 2,
       "draw": 0
     }
   },
   "moves_history": [
+    {
+      "datetime": "2024-08-02 06:13:49",
+      "human": {
+        "username": "tanishq-singh-2407",
+        "from": "g2",
+        "to": "h1"
+      },
+      "stockfish": {
+        "from": "e2",
+        "to": "f1"
+      }
+    },
     {
       "datetime": "2024-08-02 06:12:45",
       "human": {
@@ -56,18 +68,6 @@
       "stockfish": {
         "from": "b8",
         "to": "c6"
-      }
-    },
-    {
-      "datetime": "2024-08-01 12:30:30",
-      "human": {
-        "username": "DevanshKaushik-01",
-        "from": "f1",
-        "to": "f2"
-      },
-      "stockfish": {
-        "from": "h3",
-        "to": "g2"
       }
     }
   ]
