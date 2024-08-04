@@ -1,74 +1,13 @@
 {
-  "current_game_fen": "r3k1nr/ppp2pbp/2n5/3pp3/8/5P2/PPPP3P/RNB2q1K w kq - 2 12",
+  "current_game_fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
   "restart_game_fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
   "stats": {
-    "current_game": "checkmate",
+    "current_game": "stillon",
     "previous_games": {
       "humans": 0,
       "stockfish": 2,
       "draw": 0
     }
   },
-  "moves_history": [
-    {
-      "datetime": "2024-08-02 06:13:49",
-      "human": {
-        "username": "tanishq-singh-2407",
-        "from": "g2",
-        "to": "h1"
-      },
-      "stockfish": {
-        "from": "e2",
-        "to": "f1"
-      }
-    },
-    {
-      "datetime": "2024-08-02 06:12:45",
-      "human": {
-        "username": "tanishq-singh-2407",
-        "from": "g1",
-        "to": "g2"
-      },
-      "stockfish": {
-        "from": "e1",
-        "to": "e2"
-      }
-    },
-    {
-      "datetime": "2024-08-02 06:12:00",
-      "human": {
-        "username": "tanishq-singh-2407",
-        "from": "d1",
-        "to": "e1"
-      },
-      "stockfish": {
-        "from": "h4",
-        "to": "e1"
-      }
-    },
-    {
-      "datetime": "2024-08-01 19:17:54",
-      "human": {
-        "username": "TheGEN1U5",
-        "from": "g2",
-        "to": "g7"
-      },
-      "stockfish": {
-        "from": "f8",
-        "to": "g7"
-      }
-    },
-    {
-      "datetime": "2024-08-01 17:55:33",
-      "human": {
-        "username": "tanishq-singh-2407",
-        "from": "f2",
-        "to": "g2"
-      },
-      "stockfish": {
-        "from": "b8",
-        "to": "c6"
-      }
-    }
-  ]
+  "moves_history": []
 }
